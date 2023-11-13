@@ -22,11 +22,39 @@ public class Main {
 //        System.out.println("_".repeat(50));
 //        System.out.println(rowSumOddNumbers(1));
 //        System.out.println(rowSumOddNumbers(4));
-        System.out.println("_".repeat(50));
-        Arrays.stream(towerBuilder(3)).forEach(str-> System.out.println(str));
-        System.out.println("_".repeat(50));
-        Arrays.stream(towerBuilder(70)).forEach(str-> System.out.println(str));
+//        System.out.println("_".repeat(50));
+//        Arrays.stream(towerBuilder(3)).forEach(str-> System.out.println(str));
+//        System.out.println("_".repeat(50));
+//        Arrays.stream(towerBuilder(70)).forEach(str-> System.out.println(str));
+//        System.out.println(findShort("mama"));
+//        System.out.println(findShort("mama sunday windy pot lotto")); //3
+        System.out.println(findShort("bitcoin take over the world maybe who knows perhaps")); //3
+        System.out.println(findShort("turns out random test cases are easier than writing out basic ones")); //3
+        System.out.println(findShort("Let's travel abroad shall we")); //2
     }
+
+//    Simple, given a string of words, return the length of the shortest word(s).
+//    String will never be empty and you do not need to account for different data types.
+    public static int findShort(String s) {
+        int length = Integer.MAX_VALUE;
+        if (s.indexOf(" ") == -1) return s.length();
+        else length = s.indexOf(" ");
+        int tmp = 1;
+        int start = s.indexOf(" ");
+        int last = s.lastIndexOf(" ");
+        while ( start < last ) {
+            tmp = s.indexOf(" ",start+1)-start-1;
+            if (tmp < length) length = tmp;
+            start = start + tmp + 1;
+        }
+        if (s.length() - last - 1 < length ) length = s.length() - last - 1;
+        return length;
+    }
+
+//    public static int findShort(String s) {
+//        return Arrays.stream(s.split(" ")).mapToInt(String::length).min().getAsInt();
+//
+//    }
 
 //    Build a pyramid-shaped tower, as an array/list of strings, given a positive integer number of floors.
 //    A tower block is represented with "*" character.

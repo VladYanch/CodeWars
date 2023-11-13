@@ -1,36 +1,49 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(solution("abc", "bc"));
-        System.out.println(solution("abc", "d"));
+//        System.out.println(solution("abc", "bc"));
+//        System.out.println(solution("abc", "d"));
+//        System.out.println("_".repeat(50));
+//        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+//        System.out.println("_".repeat(50));
+//        System.out.println(filterList(List.of(1, 2, "a", "b"))); // => List.of(1,2))
+//        System.out.println(filterList(List.of(1, 2, "a", "b", "aasf", "1", "123", 231))); // => List.of(1, 2, 231)
+//        System.out.println("_".repeat(50));
+//        System.out.println(encode("din")); //"din"      =>  "((("
+//        System.out.println(encode("recede")); //"recede"   =>  "()()()"
+//        System.out.println(encode("Success")); //"Success"  =>  ")())())"
+//        System.out.println(encode("(( @")); //"(( @"     =>  "))(("
+//        System.out.println("_".repeat(50));
+//        System.out.println(encode1("din")); //"din"      =>  "((("
+//        System.out.println(encode1("recede")); //"recede"   =>  "()()()"
+//        System.out.println(encode1("Success")); //"Success"  =>  ")())())"
+//        System.out.println(encode1("(( @")); //"(( @"     =>  "))(("
+//        System.out.println("_".repeat(50));
+//        System.out.println(rowSumOddNumbers(1));
+//        System.out.println(rowSumOddNumbers(4));
         System.out.println("_".repeat(50));
-        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+        Arrays.stream(towerBuilder(3)).forEach(str-> System.out.println(str));
         System.out.println("_".repeat(50));
-        System.out.println(filterList(List.of(1, 2, "a", "b"))); // => List.of(1,2))
-        System.out.println(filterList(List.of(1, 2, "a", "b", "aasf", "1", "123", 231))); // => List.of(1, 2, 231)
-        System.out.println("_".repeat(50));
-        System.out.println(encode("din")); //"din"      =>  "((("
-        System.out.println(encode("recede")); //"recede"   =>  "()()()"
-        System.out.println(encode("Success")); //"Success"  =>  ")())())"
-        System.out.println(encode("(( @")); //"(( @"     =>  "))(("
-        System.out.println("_".repeat(50));
-        System.out.println(encode1("din")); //"din"      =>  "((("
-        System.out.println(encode1("recede")); //"recede"   =>  "()()()"
-        System.out.println(encode1("Success")); //"Success"  =>  ")())())"
-        System.out.println(encode1("(( @")); //"(( @"     =>  "))(("
-        System.out.println("_".repeat(50));
-        System.out.println(rowSumOddNumbers(1));
-        System.out.println(rowSumOddNumbers(4));
+        Arrays.stream(towerBuilder(70)).forEach(str-> System.out.println(str));
+    }
+
+//    Build a pyramid-shaped tower, as an array/list of strings, given a positive integer number of floors.
+//    A tower block is represented with "*" character.
+
+    public static String[] towerBuilder(int nFloors) {
+        String[] arr = new String[nFloors];
+        for (int i = 1; i <= nFloors; i++) {
+            arr[i-1]=" ".repeat(nFloors-i)+"*".repeat(i*2-1)+" ".repeat(nFloors-i);
+        }
+        return arr;
     }
 
 //        Given the triangle of consecutive odd numbers:
 //        Calculate the sum of the numbers in the nth row of this triangle (starting at index 1)
 //        1 -->  1
-//                2 --> 3 + 5 = 8
+//        2 --> 3 + 5 = 8
+//        4 --> 64
     public static int rowSumOddNumbers(int n) {
         if ( n == 1 ) return 1;
         int start = 1;

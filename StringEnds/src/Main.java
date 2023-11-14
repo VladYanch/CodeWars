@@ -36,6 +36,24 @@ public class Main {
         System.out.println(Arrays.toString(trouble(new int[]{4, 1, 1, 1, 4}, 2))); //    x = [4, 1, 4]
 
     }
+
+//    Complete the findNextSquare method that finds the next integral perfect square
+//    after the one passed as a parameter. Recall that an integral perfect square is an integer n such
+//    that sqrt(n) is also an integer.
+//
+//    If the parameter is itself not a perfect square then -1 should be returned.
+//    You may assume the parameter is non-negative.
+    public static long findNextSquare(long sq) {
+        int result = (int) Math.sqrt(sq);
+        if (result * result == sq) return (long) (result+1)*(result+1);
+        return -1L;
+    }
+
+//    public static long findNextSquare(long sq) {
+//        long root = (long) Math.sqrt(sq);
+//        return root * root == sq ? (root + 1) * (root + 1) : -1;
+//    }
+
 //    Given an array of integers (x), and a target (t),
 //    you must find out if any two consecutive numbers in the array sum to t. If so, remove the second number.
 //

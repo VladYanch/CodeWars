@@ -28,10 +28,46 @@ public class Main {
 //        Arrays.stream(towerBuilder(70)).forEach(str-> System.out.println(str));
 //        System.out.println(findShort("mama"));
 //        System.out.println(findShort("mama sunday windy pot lotto")); //3
-        System.out.println(findShort("bitcoin take over the world maybe who knows perhaps")); //3
-        System.out.println(findShort("turns out random test cases are easier than writing out basic ones")); //3
-        System.out.println(findShort("Let's travel abroad shall we")); //2
+//        System.out.println(findShort("bitcoin take over the world maybe who knows perhaps")); //3
+//        System.out.println(findShort("turns out random test cases are easier than writing out basic ones")); //3
+//        System.out.println(findShort("Let's travel abroad shall we")); //2
+//        System.out.println(Arrays.toString(trouble(new int[]{1, 3, 5, 6, 7, 4, 3}, 7))); //    x = [1, 3, 5, 6, 7, 4]
+//        System.out.println("_".repeat(50));
+        System.out.println(Arrays.toString(trouble(new int[]{4, 1, 1, 1, 4}, 2))); //    x = [4, 1, 4]
+
     }
+//    Given an array of integers (x), and a target (t),
+//    you must find out if any two consecutive numbers in the array sum to t. If so, remove the second number.
+//
+//            Example:
+//    x = [1, 2, 3, 4, 5]
+//    t = 3
+//            1+2 = t, so remove 2. No other pairs = t, so rest of array remains:
+//            [1, 3, 4, 5]
+//    Work through the array from left to right.
+//    Return the resulting array.
+
+    public static int[] trouble(int[] x, int t) {
+        List<Integer> arr = new ArrayList<>();
+        arr.add(x[0]);
+        int indexArr = 0;
+        int indexX = 1;
+        while (indexX < x.length) {
+            if (arr.get(indexArr) + x[indexX] != t) {
+                arr.add(x[indexX]);
+                indexArr++;
+            }
+            indexX++;
+        }
+//        int[] result = arr.stream().mapToInt(i->i).toArray();
+        int[] result = arr.stream().mapToInt(Integer::intValue).toArray();
+        return result;
+    }
+
+//        return arr.stream().toArray();
+//        if ( find == 0 ) return x;
+//        System.arraycopy(x,start,arr,0,find);
+//        System.arraycopy(x,find+1,arr,find,x.length-find-1);
 
 //    Simple, given a string of words, return the length of the shortest word(s).
 //    String will never be empty and you do not need to account for different data types.
@@ -50,6 +86,7 @@ public class Main {
         if (s.length() - last - 1 < length ) length = s.length() - last - 1;
         return length;
     }
+
 
 //    public static int findShort(String s) {
 //        return Arrays.stream(s.split(" ")).mapToInt(String::length).min().getAsInt();

@@ -33,8 +33,52 @@ public class Main {
 //        System.out.println(findShort("Let's travel abroad shall we")); //2
 //        System.out.println(Arrays.toString(trouble(new int[]{1, 3, 5, 6, 7, 4, 3}, 7))); //    x = [1, 3, 5, 6, 7, 4]
 //        System.out.println("_".repeat(50));
-        System.out.println(Arrays.toString(trouble(new int[]{4, 1, 1, 1, 4}, 2))); //    x = [4, 1, 4]
+//        System.out.println(Arrays.toString(trouble(new int[]{4, 1, 1, 1, 4}, 2))); //    x = [4, 1, 4]
+//        System.out.println("_".repeat(50));
+//        System.out.println(oddOrEven(new int[] {2, 5, 34, 6}));
+//        System.out.println(oddOrEven(new int[] {}));
+//        System.out.println(oddOrEven(new int[] {1, 2, 3}));
+        System.out.println(spinWords( "Hey fellow warriors" )); // => returns "Hey wollef sroirraw"
+        System.out.println(spinWords( "This is a test")); // => returns "This is a test"
+        System.out.println(spinWords( "This is another test" )); // => returns "This is rehtona test"
+    }
 
+//    Write a function that takes in a string of one or more words, and returns the same string,
+//    but with all five or more letter words reversed (Just like the name of this Kata).
+//    Strings passed in will consist of only letters and spaces.
+//    Spaces will be included only when more than one word is present.
+//    spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw"
+//    spinWords( "This is a test") => returns "This is a test"
+//    spinWords( "This is another test" )=> returns "This is rehtona test"
+    public static String spinWords(String sentence) {
+        String[] arr = sentence.split(" ");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].length()>=5) {
+                arr[i]=new StringBuilder().append(arr[i]).reverse().toString();
+            }
+        }
+        return String.join(" ",arr);
+    }
+    public static String spinWords1(String sentence) {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> list = Arrays.stream(sentence.split(" ")).toList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).length()>=5) {
+                stringBuilder.append(new StringBuilder().append(list.get(i)).reverse().toString());
+            } else {
+                stringBuilder.append(list.get(i));
+            };
+            if ( i != list.size()-1) stringBuilder.append(" ");
+        }
+        return stringBuilder.toString();
+    }
+
+//    Given a list of integers, determine whether the sum of its elements is odd or even.
+//    Give your answer as a string matching "odd" or "even".
+//    If the input array is empty consider it as: [0] (array with a zero).
+
+    public static String oddOrEven (int[] array) {
+        return Arrays.stream(array).sum() % 2 == 0 ? "even" : "odd";
     }
 
 //    Complete the findNextSquare method that finds the next integral perfect square

@@ -1,10 +1,22 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(rgb(0, 0, 0)); //"000000"
-        System.out.println(rgb(1, 2, 3)); //"000000"
-        System.out.println(rgb(-20, 275, 125)); //00FF7D
+//        System.out.println(rgb(0, 0, 0)); //"000000"
+//        System.out.println(rgb(1, 2, 3)); //"000000"
+//        System.out.println(rgb(-20, 275, 125)); //00FF7D
+        System.out.println(sortArray(new int[]{ 5, 3, 1, 8, 0 })); // 1 3 5 8 0
     }
 
+//    You will be given an array of numbers. You have to sort the odd numbers in ascending
+//    order while leaving the even numbers at their original positions.
+    public static int[] sortArray(int[] array) {
+        int[] oddArr = Arrays.stream(array).filter( x-> x % 2 != 0 ).sorted().toArray();
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0) array[i] = oddArr[j++];
+        }
+        return array;
+    }
 
 //    The rgb function is incomplete. Complete it so that passing in RGB decimal values
 //    will result in a hexadecimal representation being returned.

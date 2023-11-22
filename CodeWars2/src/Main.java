@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,9 +10,36 @@ public class Main {
 //        System.out.println(sortArray(new int[]{ 5, 3, 1, 8, 0 })); // 1 3 5 8 0
 //        System.out.println(Arrays.toString(solution("abc"))); // =>  ['ab', 'c_']
 //        System.out.println(Arrays.toString(solution("abcdef"))); // =>  ['ab', 'cd', 'ef']
+//        System.out.println(high("a bc c z")); // =>  z
+//        System.out.println(high("man i need a taxi up to ubud")); //taxi
+        System.out.println(letterCount("ASHJGKLKAFGKKJHAKAJSGADAASKGAJKLAJDLGAKFGKALSJ"));
+    }
+    public static String letterCount(String s) {
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.merge(s.charAt(i),1,Integer::sum);
+        }
+        StringBuilder sb = new StringBuilder();
+        map.forEach((el,num)-> sb.append(el).append(num));
+        return sb.toString();
+    }
 
-        System.out.println(high("a bc c z")); // =>  z
-        System.out.println(high("man i need a taxi up to ubud")); //taxi
+
+//  In this Kata, you will be given a string that may have mixed uppercase and lowercase letters
+//  and your task is to convert that string to either lowercase only or uppercase only based on:
+//  make as few changes as possible.
+//  if the string contains equal number of uppercase and lowercase letters,
+//  convert the string to lowercase.
+//  For example:
+//  solve("coDe") = "code". Lowercase characters > uppercase. Change only the "D" to lowercase.
+//  solve("CODe") = "CODE". Uppercase characters > lowecase. Change only the "e" to uppercase.
+//  solve("coDE") = "code". Upper == lowercase. Change all to lowercase.
+    public static String solve(final String str) {
+
+        char[] arr = str.toCharArray();
+
+//        Arrays.stream(.
+        return ""; //your code here
     }
 
 //    Given a string of words, you need to find the highest scoring word.

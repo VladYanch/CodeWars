@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -12,16 +13,11 @@ public class Main {
 //        System.out.println(Arrays.toString(solution("abcdef"))); // =>  ['ab', 'cd', 'ef']
 //        System.out.println(high("a bc c z")); // =>  z
 //        System.out.println(high("man i need a taxi up to ubud")); //taxi
-        System.out.println(letterCount("ASHJGKLKAFGKKJHAKAJSGADAASKGAJKLAJDLGAKFGKALSJ"));
-    }
-    public static String letterCount(String s) {
-        Map<Character,Integer> map = new LinkedHashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            map.merge(s.charAt(i),1,Integer::sum);
-        }
-        StringBuilder sb = new StringBuilder();
-        map.forEach((el,num)-> sb.append(el).append(num));
-        return sb.toString();
+//        System.out.println(letterCount("ASHJGKLKFGKKJHKAJSGADAASKGAJKLAJDLGAKFGKALSJ"));
+        System.out.println(solve("coDEC")); // "CODEC"
+        System.out.println(solve("coDE")); // = "code". Upper == lowercase. Change all to lowercase.
+        System.out.println(solve("wmTnJEsESXdvmKFFaCJRHjLrl")); // = "code". Upper == lowercase. Change all to lowercase.
+
     }
 
 
@@ -36,11 +32,33 @@ public class Main {
 //  solve("coDE") = "code". Upper == lowercase. Change all to lowercase.
     public static String solve(final String str) {
 
-        char[] arr = str.toCharArray();
-
-//        Arrays.stream(.
-        return ""; //your code here
+        int[] arr = str.chars().toArray();
+        StringBuilder sb = new StringBuilder();
+        if (Arrays.stream(arr).filter(el-> el < 97).count()> arr.length/2) {
+            for (int x: arr) {
+                if (x > 96) x = x - 32;
+                sb.append((char) x);
+            }
+        } else
+            for (int x: arr) {
+                if (x < 97) x = x + 32;
+                sb.append((char) x);
+            }
+        return sb.toString();
     }
+
+//        Сделать из строки "ASHJGKLKFGKKJHKAJSGADAASKGAJKLAJDLGAKFGKALSJ" => A9S4H2J6G6K9L4F2D2
+
+    public static String letterCount(String s) {
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.merge(s.charAt(i),1,Integer::sum);
+        }
+        StringBuilder sb = new StringBuilder();
+        map.forEach((el,num)-> sb.append(el).append(num));
+        return sb.toString();
+    }
+
 
 //    Given a string of words, you need to find the highest scoring word.
 //    Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.

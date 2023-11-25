@@ -1,7 +1,5 @@
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,13 +12,45 @@ public class Main {
 //        System.out.println(high("a bc c z")); // =>  z
 //        System.out.println(high("man i need a taxi up to ubud")); //taxi
 //        System.out.println(letterCount("ASHJGKLKFGKKJHKAJSGADAASKGAJKLAJDLGAKFGKALSJ"));
-        System.out.println(solve("coDEC")); // "CODEC"
-        System.out.println(solve("coDE")); // = "code". Upper == lowercase. Change all to lowercase.
-        System.out.println(solve("wmTnJEsESXdvmKFFaCJRHjLrl")); // = "code". Upper == lowercase. Change all to lowercase.
-
+//        System.out.println(solve("coDEC")); // "CODEC"
+//        System.out.println(solve("coDE")); // = "code". Upper == lowercase. Change all to lowercase.
+//        System.out.println(solve("wmTnJEsESXdvmKFFaCJRHjLrl")); // = "code". Upper == lowercase. Change all to lowercase.
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(1);
+        list.add(2);
+        list.add(2);
+//        System.out.println(deleteDup(list));
+        int num = 2;
+        int step = 10;
+        System.out.println(func(num, step));
     }
 
+    public static int func(int num, int step) {
+        if (step == 0) return 1;
+        return num*func(num,step-1);
+    }
 
+//    public static List deleteDup(List<Integer> list) {
+//        return list.stream().collect(Collectors.toSet()).stream().toList();
+//    }
+
+
+    public static List deleteDup(List<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+
+            for (int j = i+1; j < list.size(); j++) {
+                if (list.get(i) == list.get(j)) {
+                    list.remove(j--);
+                }
+            }
+        }
+    return list;
+    }
 //  In this Kata, you will be given a string that may have mixed uppercase and lowercase letters
 //  and your task is to convert that string to either lowercase only or uppercase only based on:
 //  make as few changes as possible.

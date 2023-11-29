@@ -15,19 +15,52 @@ public class Main {
 //        System.out.println(solve("coDEC")); // "CODEC"
 //        System.out.println(solve("coDE")); // = "code". Upper == lowercase. Change all to lowercase.
 //        System.out.println(solve("wmTnJEsESXdvmKFFaCJRHjLrl")); // = "code". Upper == lowercase. Change all to lowercase.
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(1);
-        list.add(2);
-        list.add(2);
-        list.add(1);
-        list.add(2);
-        list.add(2);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(1);
+//        list.add(2);
+//        list.add(1);
+//        list.add(2);
+//        list.add(2);
+//        list.add(1);
+//        list.add(2);
+//        list.add(2);
 //        System.out.println(deleteDup(list));
-        int num = 2;
-        int step = 10;
-        System.out.println(func(num, step));
+//        int num = 2;
+//        int step = 10;
+//        System.out.println(func(num, step));
+//        System.out.println("------------");
+//        System.out.println("A");
+//        String s = "a";
+//        System.out.println(s);
+//        System.out.println((char) (s.charAt(0) + 5));
+//        System.out.println("A"+ (char) (32) + "B");
+////        System.out.print("A"+ " " + "B");
+//        System.out.print((char) (13));
+//        System.out.print("------------");
+        System.out.print(removeNum("125043709",3));
+    }
+
+    public static String removeNum(String s, int k){
+//        List<Integer> list = s.chars().mapToObj(x-> Integer.parseInt(String.valueOf(x))).toList();
+
+        List<Character> list = s.chars().mapToObj(x->(char) x).collect(Collectors.toList());
+        for (int i = 0; i < k; i++) {
+            for (int j = 1; j < list.size()-1-i; j++) {
+                if (list.get(j-1)<list.get(j) && list.get(j)>list.get(j+1)) {
+                    list.remove(list.get(j));
+                    break;
+                } else if (list.get(j-1)>list.get(j)) {
+                    list.remove(list.get(j-1));
+                    break;
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(0)==0) list.remove(0);
+        }
+        String arr = list.stream().map(String::valueOf).collect(Collectors.joining());
+        return  list.stream().map(x->String.valueOf(x)).collect(Collectors.joining());
     }
 
     public static int func(int num, int step) {
@@ -39,18 +72,21 @@ public class Main {
 //        return list.stream().collect(Collectors.toSet()).stream().toList();
 //    }
 
-
     public static List deleteDup(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-
-            for (int j = i+1; j < list.size(); j++) {
-                if (list.get(i) == list.get(j)) {
-                    list.remove(j--);
-                }
-            }
-        }
-    return list;
+    return list.stream().distinct().toList();
     }
+
+//    public static List deleteDup(List<Integer> list) {
+//        for (int i = 0; i < list.size(); i++) {
+//
+//            for (int j = i+1; j < list.size(); j++) {
+//                if (list.get(i) == list.get(j)) {
+//                    list.remove(j--);
+//                }
+//            }
+//        }
+//    return list;
+//    }
 //  In this Kata, you will be given a string that may have mixed uppercase and lowercase letters
 //  and your task is to convert that string to either lowercase only or uppercase only based on:
 //  make as few changes as possible.

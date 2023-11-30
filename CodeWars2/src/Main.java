@@ -37,7 +37,42 @@ public class Main {
 ////        System.out.print("A"+ " " + "B");
 //        System.out.print((char) (13));
 //        System.out.print("------------");
-        System.out.print(removeNum("125043709",3));
+//        System.out.println(isPalindrome(121)); //true
+//        System.out.println(isPalindrome(-121)); //false
+//        System.out.println(isPalindrome(12421)); //true
+//        System.out.println(isPalindrome(123421)); //false
+
+//        System.out.println(isPalindromeNotString(12421)); //true
+//        System.out.println(isPalindromeNotString(123421)); //false
+        System.out.println(isPalindromeNotString(1410110141)); //true
+
+    }
+
+//    Given an integer x, return true if x is a palindrome and false otherwise.
+//    Follow up: Could you solve it without converting the integer to a string?
+    public static boolean isPalindromeNotString(int x) {
+        if (x<0) return false;
+        int num = 1;
+        int count = 0;
+        while (x/num>0) {
+            num*=10; count++;}
+        int[] arr = new int[count];
+        for (int i = 0; i < count; i++) {
+            arr[i] = x % 10;
+            x = x /10; }
+        for (int i = 0; i < arr.length/2; i++) {
+            if (arr[i]!=arr[arr.length-1-i]) return false;
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome(int x) {
+        if (x<0) return false;
+        char[] arr = String.valueOf(x).toCharArray();
+        for (int i = 0; i < arr.length/2; i++) {
+            if (arr[i]!=arr[arr.length-1-i]) return false;
+        }
+        return true;
     }
 
     public static String removeNum(String s, int k){

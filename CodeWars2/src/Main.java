@@ -44,8 +44,41 @@ public class Main {
 
 //        System.out.println(isPalindromeNotString(12421)); //true
 //        System.out.println(isPalindromeNotString(123421)); //false
-        System.out.println(isPalindromeNotString(1410110141)); //true
+//        System.out.println(isPalindromeNotString(1410110141)); //true
+        System.out.println(isMatch("ab", "a."));
+        System.out.println(isMatch("ab", ".*"));
+        System.out.println(isMatch("aa", ".*"));
 
+    }
+
+//    Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+//            '.' Matches any single character
+//            '*' Matches zero or more of the preceding element.
+
+//    The matching should cover the entire input string (not partial).
+//
+//    Example 1:
+//    Input: s = "aa", p = "a"
+//    Output: false
+//    Explanation: "a" does not match the entire string "aa".
+//
+//    Example 2:
+//    Input: s = "aa", p = "a*"
+//    Output: true
+//    Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+//
+//    Example 3:
+//    Input: s = "ab", p = ".*"
+//    Output: true
+//    Explanation: ".*" means "zero or more (*) of any character (.)".
+    public static boolean isMatch(String s, String p) {
+        if (s.length()>20 || p.length()>20 || p.charAt(0) == 42) return false; //*
+        for (int i = 0, j = 0; i < p.length(); i++) {
+            if (s.charAt(i) != p.charAt(j) && p.charAt(j)!= 46 && p.charAt(j)!= 42) return false;
+            else if (p.charAt(j) == 42 && s.charAt(i) != p.charAt(i-1)) return false;
+            else if (s.charAt(i) == p.charAt(j) || p.charAt(j) == 46) j++;
+            }
+        return true;
     }
 
 //    Given an integer x, return true if x is a palindrome and false otherwise.
@@ -68,6 +101,7 @@ public class Main {
 
     public static boolean isPalindrome(int x) {
         if (x<0) return false;
+        String s = String.valueOf(x);
         char[] arr = String.valueOf(x).toCharArray();
         for (int i = 0; i < arr.length/2; i++) {
             if (arr[i]!=arr[arr.length-1-i]) return false;

@@ -45,10 +45,20 @@ public class Main {
 //        System.out.println(isPalindromeNotString(12421)); //true
 //        System.out.println(isPalindromeNotString(123421)); //false
 //        System.out.println(isPalindromeNotString(1410110141)); //true
-        System.out.println(isMatch("ab", "a."));
-        System.out.println(isMatch("ab", ".*"));
-        System.out.println(isMatch("aa", ".*"));
+//        System.out.println(isMatch("ab", "a."));
+//        System.out.println(isMatch("ab", ".*"));
+//        System.out.println(isMatch("aa", ".*"));
+        System.out.println(solutionArr(new int[]{1,2,3}, new int[]{4,5,6})); //9
+        System.out.println(solutionArr(new int[]{10, 20, 10, 2}, new int[]{10, 25, 5, -2})); // -16.5
 
+    }
+
+    public static double solutionArr(int[] arr1, int[] arr2) {
+        double av = 0.0;
+        for (int i=0; i<arr1.length; i++) {
+            av+= (arr1[i]-arr2[i])*(arr1[i]-arr2[i]);
+        }
+        return av/arr1.length;
     }
 
 //    Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:

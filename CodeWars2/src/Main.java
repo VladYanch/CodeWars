@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,11 +49,48 @@ public class Main {
 //        System.out.println(isMatch("ab", "a."));
 //        System.out.println(isMatch("ab", ".*"));
 //        System.out.println(isMatch("aa", ".*"));
-        System.out.println(solutionArr(new int[]{1,2,3}, new int[]{4,5,6})); //9
-        System.out.println(solutionArr(new int[]{10, 20, 10, 2}, new int[]{10, 25, 5, -2})); // -16.5
-
+//        System.out.println(solutionArr(new int[]{1,2,3}, new int[]{4,5,6})); //9
+//        System.out.println(solutionArr(new int[]{10, 20, 10, 2}, new int[]{10, 25, 5, -2})); // -16.5
+        System.out.println(addBig("123", "321")); // -> "444");
+//        System.out.println(addBig("63829983432984289347293874", "90938498237058927340892374089")); // -> "91002328220491911630239667963");
     }
 
+//    We need to sum big numbers and we require your help.
+//    Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.
+//    add("123", "321"); -> "444"
+//    add("11", "99");   -> "110"
+
+    public static String addBig(String a, String b) {
+        int step = Math.max(a.length(),b.length());
+        BigInteger sum = BigInteger.valueOf(0);
+        int sum1 = 0;
+        for (int i = a.length()-1, j = 0; i > -1; i--) {
+//            sum.add(BigInteger.valueOf((long) (Integer.valueOf(String.valueOf(a.charAt(i))) * Math.pow(10, j++))));
+            sum1 += Integer.parseInt(String.valueOf(a.charAt(i))) * (int) Math.pow(10, j++);
+//            sum.add(BigInteger.valueOf(Long.parseLong(String.valueOf(a.charAt(i))) * (long) Math.pow(10, j++)));
+        }
+        for (int i = b.length()-1, j = 0; i > -1; i--) {
+//            sum1 +=Long.valueOf((long) (Integer.valueOf(String.valueOf(b.charAt(i))) * Math.pow(10, j++)));
+            sum1 += Integer.parseInt(String.valueOf(b.charAt(i))) * (int) Math.pow(10, j++);
+//            sum.add(BigInteger.valueOf(Long.parseLong(String.valueOf(b.charAt(i))) * (int) Math.pow(10, j++)));
+//            sum.add(BigInteger.valueOf((long) (Integer.valueOf(String.valueOf(a.charAt(i))) * Math.pow(10, j++))));
+        }
+        return String.valueOf(sum1);
+    }
+//    public static String add(String a, String b) {
+//        return String.valueOf(Long.parseLong(a) + Long.parseLong(b));
+//    }
+
+//    DESCRIPTION:
+//    Complete the function that
+//    accepts two integer arrays of equal length
+//    compares the value each member in one array to the corresponding member in the other
+//    squares the absolute value difference between those two values
+//    and returns the average of those squared absolute value difference between each member pair.
+//    Examples
+//    [1, 2, 3], [4, 5, 6]              -->   9   because (9 + 9 + 9) / 3
+//    [10, 20, 10, 2], [10, 25, 5, -2]  -->  16.5 because (0 + 25 + 25 + 16) / 4
+//    [-1, 0], [0, -1]                  -->   1   because (1 + 1) / 2
     public static double solutionArr(int[] arr1, int[] arr2) {
         double av = 0.0;
         for (int i=0; i<arr1.length; i++) {

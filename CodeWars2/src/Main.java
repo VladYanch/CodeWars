@@ -1,4 +1,3 @@
-import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -52,8 +51,12 @@ public class Main {
 //        System.out.println(solutionArr(new int[]{1,2,3}, new int[]{4,5,6})); //9
 //        System.out.println(solutionArr(new int[]{10, 20, 10, 2}, new int[]{10, 25, 5, -2})); // -16.5
         System.out.println(addBig("123", "321")); // -> "444");
-//        System.out.println(addBig("63829983432984289347293874", "90938498237058927340892374089")); // -> "91002328220491911630239667963");
+        System.out.println(addBig("888", "222")); // -> "1100");
+        System.out.println(addBig("091", "0009")); // -> "1100");
+        System.out.println(addBig("101", "100")); // -> "1100");
+        System.out.println(addBig("63829983432984289347293874", "90938498237058927340892374089")); // -> "91002328220491911630239667963");
     }
+
 
 //    We need to sum big numbers and we require your help.
 //    Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.
@@ -61,21 +64,23 @@ public class Main {
 //    add("11", "99");   -> "110"
 
     public static String addBig(String a, String b) {
-        int step = Math.max(a.length(),b.length());
-        BigInteger sum = BigInteger.valueOf(0);
-        int sum1 = 0;
-        for (int i = a.length()-1, j = 0; i > -1; i--) {
-//            sum.add(BigInteger.valueOf((long) (Integer.valueOf(String.valueOf(a.charAt(i))) * Math.pow(10, j++))));
-            sum1 += Integer.parseInt(String.valueOf(a.charAt(i))) * (int) Math.pow(10, j++);
-//            sum.add(BigInteger.valueOf(Long.parseLong(String.valueOf(a.charAt(i))) * (long) Math.pow(10, j++)));
+//        return new BigInteger(a).add(new BigInteger(b)).toString(); // import java.math.BigInteger запрещен;
+        StringBuilder result = new StringBuilder();
+        int dop = 0;
+        String strA = a.replaceFirst("^0+", "");
+        String strB = b.replaceFirst("^0+", "");
+        int max = Math.max(strA.length(),strB.length());
+        for (int i = 0, aNum = 0, bNum = 0; i < max ; i++) {
+            if (i<strA.length()) aNum = Integer.parseInt(String.valueOf(strA.charAt(strA.length()-1-i)));
+            else aNum = 0;
+            if (i<strB.length()) bNum = Integer.parseInt(String.valueOf(strB.charAt(strB.length()-1-i)));
+            else bNum = 0;
+            result.append((aNum + bNum + dop) % 10);
+            if ((aNum + bNum +dop) > 9) dop = 1;
+            else dop = 0;
         }
-        for (int i = b.length()-1, j = 0; i > -1; i--) {
-//            sum1 +=Long.valueOf((long) (Integer.valueOf(String.valueOf(b.charAt(i))) * Math.pow(10, j++)));
-            sum1 += Integer.parseInt(String.valueOf(b.charAt(i))) * (int) Math.pow(10, j++);
-//            sum.add(BigInteger.valueOf(Long.parseLong(String.valueOf(b.charAt(i))) * (int) Math.pow(10, j++)));
-//            sum.add(BigInteger.valueOf((long) (Integer.valueOf(String.valueOf(a.charAt(i))) * Math.pow(10, j++))));
-        }
-        return String.valueOf(sum1);
+        if (dop == 1) result.append(1);
+        return result.reverse().toString();
     }
 //    public static String add(String a, String b) {
 //        return String.valueOf(Long.parseLong(a) + Long.parseLong(b));

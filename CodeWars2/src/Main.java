@@ -67,24 +67,16 @@ public class Main {
 //        return new BigInteger(a).add(new BigInteger(b)).toString(); // import java.math.BigInteger запрещен;
         StringBuilder result = new StringBuilder();
         int dop = 0;
-        String strA = a.replaceFirst("^0+", "");
-        String strB = b.replaceFirst("^0+", "");
-        int max = Math.max(strA.length(),strB.length());
+        int max = Math.max(a.length(),b.length());
         for (int i = 0, aNum = 0, bNum = 0; i < max ; i++) {
-            if (i<strA.length()) aNum = Integer.parseInt(String.valueOf(strA.charAt(strA.length()-1-i)));
-            else aNum = 0;
-            if (i<strB.length()) bNum = Integer.parseInt(String.valueOf(strB.charAt(strB.length()-1-i)));
-            else bNum = 0;
+            aNum = i < a.length() ? Character.getNumericValue(a.charAt(a.length()-1-i)) : 0;
+            bNum = i < b.length() ? Character.getNumericValue(b.charAt(b.length()-1-i)) : 0;
             result.append((aNum + bNum + dop) % 10);
-            if ((aNum + bNum +dop) > 9) dop = 1;
-            else dop = 0;
+            dop = (aNum + bNum +dop) > 9 ? 1 : 0;
         }
         if (dop == 1) result.append(1);
-        return result.reverse().toString();
+        return result.reverse().toString().replaceFirst("^0+", "");
     }
-//    public static String add(String a, String b) {
-//        return String.valueOf(Long.parseLong(a) + Long.parseLong(b));
-//    }
 
 //    DESCRIPTION:
 //    Complete the function that

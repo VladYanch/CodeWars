@@ -59,7 +59,8 @@ public class Main {
 //        System.out.println(incrementString("foo01")); // -> "foo02");
 //        System.out.println(incrementString("foo0042")); // -> "foo0043");
 //        System.out.println(incrementString("foo99")); // -> "foo100");
-        System.out.println(incrementString("foo099")); // -> "foo100");
+//        System.out.println(incrementString("foo099")); // -> "foo100");
+//        System.out.println(incrementString("999")); // -> "1000");
 
     }
 //    Your job is to write a function which increments a string, to create a new string.
@@ -75,23 +76,18 @@ public class Main {
         if (str.equals("")) return "1";
         char chr = str.charAt(str.length()-1);
         if (chr < 48 || chr > 57) return str+1;
-        boolean dop = false;
-        int numZero = 0;
-        boolean find = true;
         int index = str.length()-1;
         StringBuilder result = new StringBuilder();
-        while (find) {
-            if (Character.isDigit(str.charAt(index)) &&  str.charAt(index) < 57)
-                if (dop) return str.substring(0,str.length()-1-result.length()) + (Character.getNumericValue(str.charAt(index)) +1) + result;
-            else if (Character.isDigit(str.charAt(index)) && str.charAt(index) == 57 ) {
-                dop = true;
-                result.append(0);
-            } else if (Character.isDigit(str.charAt(index)) ^ dop)
-                return str.substring(0,str.length()-result.length())+result;
-            else return str.substring(0,str.length()-result.length()-1)+1+result;
+        char currChar = str.charAt(index);
+        while (Character.isDigit(currChar)) {
+            if (str.charAt(index) < 57)
+                return str.substring(0,str.length()-1-result.length()) + (Character.getNumericValue(currChar) + 1) + result;
+            else if (str.charAt(index) == 57 ) result.append(0);
             index--;
+            if (index == -1) return  "1" + result;
+            else currChar = str.charAt(index);
         }
-        return str;
+        return str.substring(0,str.length()-result.length()) + 1 + result;
     }
 
 //    public static String incrementString(String str) {

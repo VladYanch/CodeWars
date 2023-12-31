@@ -1,5 +1,7 @@
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -50,13 +52,68 @@ public class Main {
 //        System.out.println(isMatch("aa", ".*"));
 //        System.out.println(solutionArr(new int[]{1,2,3}, new int[]{4,5,6})); //9
 //        System.out.println(solutionArr(new int[]{10, 20, 10, 2}, new int[]{10, 25, 5, -2})); // -16.5
-        System.out.println(addBig("123", "321")); // -> "444");
-        System.out.println(addBig("888", "222")); // -> "1100");
-        System.out.println(addBig("091", "0009")); // -> "1100");
-        System.out.println(addBig("101", "100")); // -> "1100");
-        System.out.println(addBig("63829983432984289347293874", "90938498237058927340892374089")); // -> "91002328220491911630239667963");
+//        System.out.println(addBig("000091", "0009")); // -> "1100");
+//        System.out.println(addBig("101", "100")); // -> "201");
+//        System.out.println(addBig("63829983432984289347293874", "90938498237058927340892374089")); // -> "91002328220491911630239667963");
+//        System.out.println(incrementString("foo")); // -> "foo1");
+//        System.out.println(incrementString("foo01")); // -> "foo02");
+//        System.out.println(incrementString("foo0042")); // -> "foo0043");
+//        System.out.println(incrementString("foo99")); // -> "foo100");
+        System.out.println(incrementString("foo099")); // -> "foo100");
+
+    }
+//    Your job is to write a function which increments a string, to create a new string.
+//    If the string already ends with a number, the number should be incremented by 1.
+//    If the string does not end with a number. the number 1 should be appended to the new string.
+//
+//    foo -> foo1
+//    foo0042 -> foo0043
+//    foo9 -> foo10
+//    foo099 -> foo100
+
+    public static String incrementString(String str) {
+        if (str.equals("")) return "1";
+        char chr = str.charAt(str.length()-1);
+        if (chr < 48 || chr > 57) return str+1;
+        boolean dop = false;
+        int numZero = 0;
+        boolean find = true;
+        int index = str.length()-1;
+        StringBuilder result = new StringBuilder();
+        while (find) {
+            if (Character.isDigit(str.charAt(index)) &&  str.charAt(index) < 57)
+                if (dop) return str.substring(0,str.length()-1-result.length()) + (Character.getNumericValue(str.charAt(index)) +1) + result;
+            else if (Character.isDigit(str.charAt(index)) && str.charAt(index) == 57 ) {
+                dop = true;
+                result.append(0);
+            } else if (Character.isDigit(str.charAt(index)) ^ dop)
+                return str.substring(0,str.length()-result.length())+result;
+            else return str.substring(0,str.length()-result.length()-1)+1+result;
+            index--;
+        }
+        return str;
     }
 
+//    public static String incrementString(String str) {
+//        if (str.equals("")) return "1";
+//        char chr = str.charAt(str.length()-1);
+//        if (chr < 48 || chr > 57) return str+1;
+//        if (str.charAt(str.length()-2) > 57) return str.substring(0,str.length()-1) +
+//                (Character.getNumericValue(chr) + 1);
+//        StringBuilder numSb = new StringBuilder();
+//        int index = str.length()-1;
+//        while (Character.isDigit(str.charAt(index))) numSb.append(str.charAt(index--));
+//        String numberStr = numSb.reverse().toString();
+//        int number = Integer.parseInt(numberStr);
+//        int sumZero = numberStr.length() - String.valueOf(number).length();
+//        if (String.valueOf(number).matches("9+") && sumZero < 2)
+//            return str.substring(0, str.length()-numberStr.length()) + (number + 1);
+//        StringBuilder resultSb = new StringBuilder();
+//        for (int i = 0; i < sumZero; i++) {
+//            resultSb.append("0");
+//        }
+//        return str.substring(0, str.length()-numberStr.length())+ resultSb +(number+1);
+//    }
 
 //    We need to sum big numbers and we require your help.
 //    Write a function that returns the sum of two numbers. The input numbers are strings and the function must return a string.

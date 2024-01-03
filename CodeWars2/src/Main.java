@@ -61,7 +61,42 @@ public class Main {
 //        System.out.println(incrementString("foo99")); // -> "foo100");
 //        System.out.println(incrementString("foo099")); // -> "foo100");
 //        System.out.println(incrementString("999")); // -> "1000");
+//        System.out.println(singlePermutations("ab")); // ['ab', 'ba']
+        System.out.println(singlePermutations("abc")); // ['abc','acb','bac','bca','cab','cba']
 
+    }
+
+//    In this kata, your task is to create all permutations of a non-empty input string and remove duplicates, if present.
+//    Create as many "shufflings" as you can!
+//    With input 'a':
+//    Your function should return: ['a']
+//    With input 'ab':
+//    Your function should return ['ab', 'ba']
+//    With input 'abc':
+//    Your function should return ['abc','acb','bac','bca','cab','cba']
+//    With input 'aabb':
+//    Your function should return ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
+
+    public static List<String> singlePermutations(String s) {
+        Set<String> result = new HashSet<>();
+        result.add(s);
+        if (s.length()==1) return result.stream().toList();
+        String[] arr = s.split("");
+//        int index = 0;
+        while (true) {
+            if (arr[0].equals(String.valueOf(s.charAt(s.length()-1)))) break;
+            for (int i = 1; i < s.length() - 1; i++) {
+                String temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                result.add(Arrays.stream(arr).collect(Collectors.joining()));
+            }
+            String temp1 = arr[0];
+            arr[0] = arr[1];
+            arr[1] = temp1;
+            result.add(Arrays.stream(arr).collect(Collectors.joining()));
+        }
+        return result.stream().toList();
     }
 //    Your job is to write a function which increments a string, to create a new string.
 //    If the string already ends with a number, the number should be incremented by 1.

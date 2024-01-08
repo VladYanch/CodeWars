@@ -78,18 +78,30 @@ public class Main {
 //    Your function should return ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
 
     public static List<String> singlePermutations(String s) {
+        List<String> list = new ArrayList<>();
+        if (s.length()==1) {
+            list.add(s);
+            return list;
+        }
         Set<String> result = new HashSet<>();
-        result.add(s);
-        if (s.length()==1) return result.stream().toList();
         String[] arr = s.split("");
-//        int index = 0;
+        int index = 1;
         while (true) {
-            if (arr[0].equals(String.valueOf(s.charAt(s.length()-1)))) break;
-            for (int i = 1; i < s.length() - 1; i++) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < arr.length-1; i++) {
+                sb.append(arr[index]);
+            }
+
+            result.add(Arrays.stream(arr).collect(Collectors.joining()));
+            for (int i = 1; i < arr.length-1 ; i=i+2) {
                 String temp = arr[i];
                 arr[i] = arr[i + 1];
                 arr[i + 1] = temp;
                 result.add(Arrays.stream(arr).collect(Collectors.joining()));
+            }
+
+            if (arr[0].equals(String.valueOf(s.charAt(s.length()-1)))) break;
+            for (int i = 1; i < s.length() - 1; i++) {
             }
             String temp1 = arr[0];
             arr[0] = arr[1];

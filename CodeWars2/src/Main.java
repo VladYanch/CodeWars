@@ -63,8 +63,9 @@ public class Main {
 //        System.out.println(incrementString("999")); // -> "1000");
 //        System.out.println(singlePermutations("ab")); // ['ab', 'ba']
 //        System.out.println(singlePermutations("abc")); // ['abc','acb','bac','bca','cab','cba']
-        System.out.println(singlePermutations("aabb")); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
-        System.out.println(singlePermutations("aaaab")); // ['aaaab', 'aaaba', 'aabaa', 'abaaa', 'baaaa']
+//        System.out.println(singlePermutations("aabb")); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
+//        System.out.println(singlePermutations("aaaab")); // ['aaaab', 'aaaba', 'aabaa', 'abaaa', 'baaaa']
+        System.out.println(singlePermutations("abcd")); // ['aaaab', 'aaaba', 'aabaa', 'abaaa', 'baaaa']
 
     }
 
@@ -88,10 +89,10 @@ public class Main {
         Set<String> result = new HashSet<>();
         String[] arr = s.split("");
         int index = 0;
-        while (index<=arr.length-1) {
-            result.add(Arrays.stream(arr).collect(Collectors.joining()));
+        while (index<=arr.length) {
+//            result.add(Arrays.stream(arr).collect(Collectors.joining()));
             for (int j = 0; j < arr.length-1 ; j++) {
-                for (int i = j; i < arr.length - 1; i = i + 1) {
+                for (int i = j+1; i < arr.length - 1; i = i + 1) {
                     String temp = arr[i];
                     arr[i] = arr[i + 1];
                     arr[i + 1] = temp;
@@ -102,6 +103,9 @@ public class Main {
                 arr[i] = String.valueOf(s.charAt(i));
             }
                 index++;
+            if (String.valueOf(s.charAt(index)).equals("d")) {
+                System.out.println("d");
+            }
             if (index < arr.length) {
                 String temp1 = arr[0];
                 arr[0] = String.valueOf(s.charAt(index));

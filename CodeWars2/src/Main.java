@@ -91,10 +91,14 @@ public class Main {
         int index = 0;
 
 
-//        while (index<=arr.length) {
+        while (index<=arr.length) {
+
+        }
 ////            result.add(Arrays.stream(arr).collect(Collectors.joining()));
 //            for (int j = 0; j < arr.length-1 ; j++) {
+                    StringBuilder sb = new StringBuilder();
 //                for (int i = j+1; i < arr.length - 1; i = i + 1) {
+
 //                    String temp = arr[i];
 //                    arr[i] = arr[i + 1];
 //                    arr[i + 1] = temp;

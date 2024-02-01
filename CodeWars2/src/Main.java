@@ -61,17 +61,6 @@ public class Main {
 //        System.out.println(incrementString("foo99")); // -> "foo100");
 //        System.out.println(incrementString("foo099")); // -> "foo100");
 //        System.out.println(incrementString("999")); // -> "1000");
-
-         int i = 0;
-         final double k = 5.55;
-
-        System.out.println(i);
-        System.out.println(k);
-         i = 20;
-        System.out.println(i);
-//         k = k + 1;
-        System.out.println(k);
-
 //        System.out.println(singlePermutations("ab")); // ['ab', 'ba']
 //        System.out.println(singlePermutations("abc")); // ['abc','acb','bac','bca','cab','cba']
 //        System.out.println(singlePermutations("aabb")); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']

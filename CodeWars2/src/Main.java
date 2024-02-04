@@ -66,6 +66,7 @@ public class Main {
 //        System.out.println(singlePermutations("aabb")); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
 //        System.out.println(singlePermutations("aaaab")); // ['aaaab', 'aaaba', 'aabaa', 'abaaa', 'baaaa']
 //        System.out.println(singlePermutations("abcd")); //
+        System.out.println(singlePermutations("abcde")); //
 
     }
 

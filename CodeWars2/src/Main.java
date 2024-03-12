@@ -61,13 +61,13 @@ public class Main {
 //        System.out.println(incrementString("foo99")); // -> "foo100");
 //        System.out.println(incrementString("foo099")); // -> "foo100");
 //        System.out.println(incrementString("999")); // -> "1000");
-//        System.out.println(singlePermutations("ab")); // ['ab', 'ba']
+        System.out.println(singlePermutations("ab")); // ['ab', 'ba']
 //        System.out.println(singlePermutations("abc")); // ['abc','acb','bac','bca','cab','cba']
 //        System.out.println(singlePermutations("aabb")); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
 //        System.out.println(singlePermutations("aaaab")); // ['aaaab', 'aaaba', 'aabaa', 'abaaa', 'baaaa']
         System.out.println(singlePermutations("abcd")); //
 //        System.out.println(singlePermutations("abcde")); //
-        System.out.println(singlePermutations("abcdef")); //
+//        System.out.println(singlePermutations("abcdef")); //
 
 
     }
